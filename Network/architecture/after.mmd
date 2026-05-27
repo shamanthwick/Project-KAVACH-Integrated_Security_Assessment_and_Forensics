@@ -1,0 +1,30 @@
+flowchart LR
+  User[User Workstations]
+  Server[Server Segment]
+  DC[Domain Controllers]
+  DNS[Filtered Internal DNS]
+  Proxy[Egress Proxy + TLS Inspection]
+  DLP[Egress DLP + Upload Controls]
+  SFTP[Managed SFTP / MFT]
+  IDS[IDS/IPS + Zeek/Suricata]
+  NDR[NDR Scan Detection]
+  SIEM[SIEM + Case Management]
+  EDR[Endpoint EDR]
+  Internet[Internet]
+
+  User --> EDR
+  User --> DNS
+  Server --> DNS
+  DC --> DNS
+  User --> Proxy --> DLP --> IDS --> Internet
+  Server --> Proxy
+  User --> SFTP
+  User -. restricted .-> DC
+  Server -. policy only .-> DC
+  DNS --> SIEM
+  Proxy --> SIEM
+  DLP --> SIEM
+  SFTP --> SIEM
+  IDS --> SIEM
+  NDR --> SIEM
+  EDR --> SIEM

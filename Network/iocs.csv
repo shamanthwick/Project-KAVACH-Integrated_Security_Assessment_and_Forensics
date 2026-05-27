@@ -1,0 +1,64 @@
+Capture,IOC,Type,Confidence,Packet Range,Evidence,Notes
+Hancitor,10.0.0.134,Internal Host,High,1-20715,"Only internal workstation generating suspicious DNS, payload downloads, C2 traffic, and suspected stealer POSTs",Infected host
+Hancitor,10.0.0.7,Internal Host,Medium,763-15709,Likely domain controller referenced by AD DNS and contacted over SMB/LDAP/DCERPC,Kindness-DC / kindness-trap.com
+Hancitor,5.252.177.17,IP,High,678-20713,"Dominant external endpoint with /load, /activity, and /submit.php?id=159302031",C2/beacon infrastructure
+Hancitor,194.226.60.15,IP,High,21-20090,Destination for repeated pariamarraire.ru /8/forum.php POSTs,Hancitor check-in endpoint
+Hancitor,8.209.119.208,IP,High,30-43,"Serves /15.bin, /15s.bin, and /f7h7jhhjbch.exe for larn9kany.ru",Payload host
+Hancitor,162.244.83.95,IP,High,39-72,Serves /ZsDK and /8mJm; one request is HTTP decoded on port 443,Payload host
+Hancitor,185.66.15.228,IP,Medium,39-1497,Large HTTP conversation from infected host,Suspicious long transfer; exact content not classified here
+Hancitor,sciandwourgy.com,Domain,Medium,Oct-14,Repeated suspicious DNS lookup immediately after public IP check,No HTTP request observed in extracted rows
+Hancitor,pariamarraire.ru,Domain,High,16;21-20090,DNS lookup followed by repeated POST /8/forum.php,Suspicious Hancitor-style endpoint
+Hancitor,larn9kany.ru,Domain,High,25;30-43;838,DNS lookup followed by binary and EXE downloads,Payload domain
+Hancitor,pospvisis.com,Domain,Medium,840,Suspicious DNS lookup during early infection burst,No HTTP request observed in extracted rows
+Hancitor,api.ipify.org,Domain,Medium,1;6;750,Public IP discovery at start of infection,Can be benign alone; suspicious in sequence
+Hancitor,/8/forum.php,URI,High,21-20090,13 POSTs to pariamarraire.ru,Hancitor check-in pattern
+Hancitor,/15.bin,URI,High,30,Downloaded from larn9kany.ru,Payload-like object; SHA256 F9DD938DEF42C00911A7D3DA7A823BF3A9BA24998933763988492C711960B6FE
+Hancitor,/15s.bin,URI,High,34,Downloaded from larn9kany.ru,Payload-like object; SHA256 8673EC9943347CDD6C0AEB5B3A8DA3E20110C0E6C500AC7DE39994417440BE75
+Hancitor,/f7h7jhhjbch.exe,URI,High,43,EXE downloaded from larn9kany.ru,Windows Defender blocked safe hash access during extraction
+Hancitor,/ZsDK,URI,High,39,Downloaded from 162.244.83.95,Payload-like object; SHA256 416639BFCF73C0CB7D06E7C70DA46BBCAF06B707114E2DDBD034AB40E9CCE293
+Hancitor,/8mJm,URI,High,72,Downloaded from 162.244.83.95:443 over HTTP,Payload-like object; SHA256 8B8F1CC2048E4C5C30E39D5E1C74B7E0AC67964AD029797DBEC609102CC57C9A
+Hancitor,/load,URI,High,678-20237,25 GET requests to 5.252.177.17,Loader/C2 polling
+Hancitor,/activity,URI,High,749-20713,1689 GET requests to 5.252.177.17:443,High-frequency C2 beaconing
+Hancitor,/submit.php?id=159302031,URI,High,2206-3922,6 POST requests to 5.252.177.17:443,Suspected stealer upload/C2 submit
+Hancitor,Mozilla/5.0 (Windows NT 6.1; Win64; x64; Trident/7.0; rv:11.0) like Gecko,User-Agent,Medium,6-20090,Used for api.ipify.org and pariamarraire.ru traffic,Old IE-like string
+Hancitor,Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; .NET CLR 2.0.50727),User-Agent,High,749-20713,Used for /activity and /submit.php traffic,Suspicious legacy User-Agent for C2
+Trickbot,10.5.26.132,Internal Host,High,2910-10876,Source for /rob87/ C2 posts and suspicious HTTP resource retrieval,Infected workstation DESKTOP-OG16DGY
+Trickbot,10.5.26.4,Internal Host,High,13210-26639,Source for /tot108/ C2 posts and antivirusupdaty.com beaconing,Domain controller candidate VICTORYPUNK-DC
+Trickbot,36.95.27.243,IP,High,2910;13210,HTTP POST to /rob87/ and /tot108/ bot paths on port 443,Trickbot-style C2
+Trickbot,103.102.220.50,IP,High,3045;14613,HTTP POST to /rob87/ and /tot108/ bot paths on port 443,Second Trickbot-style C2 destination
+Trickbot,192.236.155.230,IP,High,3052-17677,"GET /images/redbutton.png, /ico/viodifot, and /images/cutscroll.png",Suspicious resource or payload server
+Trickbot,5.199.162.3,IP,High,22993-26639,HTTP/TLS traffic for antivirusupdaty.com including /logo?hour=true and /as,Beaconing infrastructure
+Trickbot,antivirusupdaty.com,Domain,High,24097-26639,"DNS query, TLS SNI, repeated HTTP GET /logo?hour=true, and POST /as",Typo-squatted suspicious C2 domain
+Trickbot,/rob87/DESKTOP-OG16DGY_W617601.D5D933B2E59558F3F46D9130BB091D98/90,URI,High,2910;3045,POST from 10.5.26.132 with User-Agent Winhttp 1/0,Trickbot-style bot identifier
+Trickbot,/tot108/VICTORYPUNK-DC_W617601.B5EFB19D6BB313B551F3FB5897A283BE/90,URI,High,13210;14613,POST from 10.5.26.4 with User-Agent Winhttp 1/0,C2-style bot identifier from domain controller candidate
+Trickbot,/images/redbutton.png,URI,Medium,3052;5599;13332;15645,Repeated GETs from infected internal hosts to 192.236.155.230,Suspicious resource retrieval
+Trickbot,/images/cutscroll.png,URI,Medium,10876;17677,GETs from 10.5.26.132 and 10.5.26.4 to 192.236.155.230,Suspicious resource retrieval
+Trickbot,/ico/viodifot,URI,Medium,4776;14741,GETs from 10.5.26.132 and 10.5.26.4 to 192.236.155.230,Suspicious resource retrieval
+Trickbot,/logo?hour=true,URI,High,23179-26639,Repeated GETs to antivirusupdaty.com from 10.5.26.4,Beacon-like behavior
+Trickbot,/as,URI,Medium,23758-25525,Repeated POSTs to antivirusupdaty.com from 10.5.26.4,Suspected upload/exfil channel; content not proven
+Trickbot,Winhttp 1/0,User-Agent,High,2910;3045;13210;14613,Used on C2 POSTs to IP addresses over port 443,Non-standard malware-like client
+Trickbot,WinHTTP loader/1.0,User-Agent,Medium,5599;10876;15645;17677,Used for suspicious HTTP resource retrieval,Loader-style User-Agent
+Trickbot,"Mozilla/5.0 (Linux; Android 7.0; Pixel C Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0",User-Agent,Medium,23179-26639,Used by 10.5.26.4 when contacting antivirusupdaty.com,Android WebView string is anomalous from Windows DC candidate
+RedLine,10.10.23.101,Internal Host,High,Jan-07,"Single internal host responsible for RedLine POSTs, public IP discovery, and high-volume upload",Infected workstation candidate
+RedLine,188.190.10.10,IP,High,Jul-86,Direct external destination for repeated HTTP POST / requests on port 55123,Stealer collection or C2 endpoint
+RedLine,188.190.10.10:55123,Endpoint,High,Jul-86,Main TCP conversation: 8787 frames and about 6057 kB,Non-standard service port receiving upload
+RedLine,api.ip.sb,Domain,Medium,21-26,DNS query and TLS SNI immediately after initial POSTs,Public IP discovery service; suspicious in stealer sequence
+RedLine,POST /,URI Pattern,High,7;14;4387;8786,Repeated HTTP POSTs to 188.190.10.10:55123,Direct-IP upload pattern
+RedLine,5.7 MB upload,Behavior,High,Jan-07,10.10.23.101 sends about 5783 kB to 188.190.10.10 in 25.7 seconds,Exfiltration-like volume and direction
+Exfiltration,10.0.2.15,Internal Host,Medium,Jan-19,"Single internal client generating DNS, TLS, OCSP, and web activity",Baseline/exfiltration investigation host
+Exfiltration,1.1.1.1,DNS Resolver,Medium,Jan-19,1741 DNS packets between 10.0.2.15 and Cloudflare resolver,High DNS visibility point
+Exfiltration,dt.adsafeprotected.com,Domain,Low,Multiple,Top DNS query count 37 and TLS SNI count 12,Likely ad/analytics baseline unless paired with other evidence
+Exfiltration,www.redditstatic.com,Domain,Low,Multiple,DNS query count 36,Web/CDN baseline
+Exfiltration,ophan.theguardian.com,Domain,Low,Multiple,DNS query count 31 and TLS SNI count 7,Analytics baseline; monitor for unusual volume
+Exfiltration,ocsp.digicert.com,Domain,Low,3812-3967,OCSP HTTP POSTs from 10.0.2.15,Certificate validation baseline
+FTP,192.168.47.1,Internal Host,High,5-177,FTP client sending credentials and transferring files,Potential user/admin system
+FTP,192.168.47.134,Server,High,4-177,"Microsoft FTP Service, receives login and file upload",FTP server
+FTP,Administrator,Username,High,5;38,Cleartext FTP USER command,Privileged credential exposure
+FTP,napier,Password,High,7;40,Cleartext FTP PASS command,Plaintext credential exposure
+FTP,111.png,Filename,High,50-123,STOR 111.png followed by passive data transfer and 226 completion,Uploaded file
+FTP,manual.txt,Filename,High,166-177,RETR manual.txt followed by passive data transfer and 226 completion,Downloaded file
+FTP,FTP cleartext auth,Behavior,High,May-41,USER/PASS and 230 login visible without decryption,Credential abuse risk
+NmapNULL,192.168.47.171,Scanner IP,High,Jan-36,Sends 1030 NULL probes to 192.168.47.134,Internal scanner or attacker host
+NmapNULL,192.168.47.134,Target IP,High,Jan-36,Receives 1000-port NULL scan,Reconnaissance target
+NmapNULL,tcp.flags==0x000,Scan Signature,High,Jan-36,1030 packets with no TCP flags set,Nmap NULL scan behavior
+NmapNULL,1000 destination ports,Behavior,High,Jan-36,"Ports include 21, 22, 23, 25, 53, 80, 135, 139, 443, 445, 3306, 3389, 5432, 5900, 8080",Broad service discovery

@@ -1,0 +1,15 @@
+flowchart LR
+  Internet[Internet / External Hosts]
+  User[User Workstation]
+  DC[Domain Controller]
+  FTP[Legacy FTP Server]
+  DNS[Internal DNS]
+  FW[Basic Firewall]
+
+  User --> DC
+  User --> FTP
+  User --> DNS
+  DC --> DNS
+  User --> FW --> Internet
+  FTP --> FW
+  DC --> FW --> Internet

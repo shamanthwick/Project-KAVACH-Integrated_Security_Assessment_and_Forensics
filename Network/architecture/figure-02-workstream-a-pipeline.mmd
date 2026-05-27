@@ -1,0 +1,9 @@
+flowchart LR
+  A[A.1 Source PCAP] --> B[A.2 Triage Pass]
+  B --> C[A.3 Hypotheses]
+  C --> D[A.4 IOC Extraction]
+  D --> E[A.5 Architecture Diff]
+  A -. artifacts .-> C
+  B -. baseline .-> C
+  C -. reasoning .-> D
+  D -. controls .-> E

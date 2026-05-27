@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="460" viewBox="0 0 1120 460">
+  <style>
+    .box{fill:#ecfdf3;stroke:#027a48;stroke-width:2;rx:10}
+    .control{fill:#eff8ff;stroke:#175cd3;stroke-width:2;rx:10}
+    .core{fill:#f4f3ff;stroke:#5925dc;stroke-width:2;rx:10}
+    .text{font-family:Segoe UI,Arial,sans-serif;font-size:15px;fill:#1f2937}
+    .title{font-family:Segoe UI,Arial,sans-serif;font-size:22px;font-weight:700;fill:#111827}
+    .small{font-family:Segoe UI,Arial,sans-serif;font-size:12px;fill:#4b5563}
+    .line{stroke:#374151;stroke-width:2;marker-end:url(#arrow)}
+    .dash{stroke:#6b7280;stroke-width:2;stroke-dasharray:6 5;marker-end:url(#arrow)}
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <text x="30" y="38" class="title">After: Segmented, Monitored, Egress-Controlled Architecture</text>
+  <rect x="35" y="95" width="160" height="70" class="box"/>
+  <text x="72" y="126" class="text">Workstations</text>
+  <text x="62" y="149" class="small">EDR enforced</text>
+  <rect x="35" y="245" width="160" height="70" class="box"/>
+  <text x="82" y="276" class="text">Servers</text>
+  <text x="63" y="299" class="small">tiered access</text>
+  <rect x="260" y="95" width="160" height="70" class="control"/>
+  <text x="305" y="126" class="text">Filtered DNS</text>
+  <text x="287" y="149" class="small">sinkhole + analytics</text>
+  <rect x="260" y="245" width="160" height="70" class="core"/>
+  <text x="288" y="276" class="text">Domain Controllers</text>
+  <text x="296" y="299" class="small">restricted access</text>
+  <rect x="485" y="70" width="160" height="70" class="control"/>
+  <text x="527" y="101" class="text">Egress Proxy</text>
+  <text x="512" y="124" class="small">TLS/protocol checks</text>
+  <rect x="485" y="165" width="160" height="70" class="control"/>
+  <text x="512" y="196" class="text">DLP Upload Controls</text>
+  <text x="510" y="219" class="small">volume + content rules</text>
+  <rect x="485" y="260" width="160" height="70" class="control"/>
+  <text x="514" y="291" class="text">Managed SFTP/MFT</text>
+  <text x="523" y="314" class="small">no cleartext FTP</text>
+  <rect x="710" y="95" width="160" height="70" class="control"/>
+  <text x="732" y="126" class="text">IDS/IPS + Zeek</text>
+  <text x="739" y="149" class="small">C2 + scan rules</text>
+  <rect x="710" y="245" width="160" height="70" class="control"/>
+  <text x="739" y="276" class="text">NDR Detection</text>
+  <text x="739" y="299" class="small">NULL scans, sweeps</text>
+  <rect x="930" y="95" width="160" height="70" class="box"/>
+  <text x="983" y="126" class="text">Internet</text>
+  <text x="959" y="149" class="small">allow-listed egress</text>
+  <rect x="930" y="245" width="160" height="70" class="core"/>
+  <text x="979" y="276" class="text">SIEM</text>
+  <text x="958" y="299" class="small">case workflow</text>
+  <line x1="195" y1="125" x2="260" y2="125" class="line"/>
+  <line x1="195" y1="280" x2="260" y2="280" class="dash"/>
+  <line x1="420" y1="125" x2="485" y2="105" class="line"/>
+  <line x1="645" y1="105" x2="710" y2="125" class="line"/>
+  <line x1="870" y1="125" x2="930" y2="125" class="line"/>
+  <line x1="565" y1="140" x2="565" y2="165" class="line"/>
+  <line x1="195" y1="145" x2="485" y2="200" class="line"/>
+  <line x1="195" y1="295" x2="485" y2="295" class="line"/>
+  <line x1="420" y1="295" x2="485" y2="295" class="line"/>
+  <line x1="645" y1="200" x2="710" y2="130" class="line"/>
+  <line x1="790" y1="165" x2="790" y2="245" class="line"/>
+  <line x1="420" y1="130" x2="930" y2="270" class="line"/>
+  <line x1="645" y1="200" x2="930" y2="275" class="line"/>
+  <line x1="645" y1="295" x2="930" y2="285" class="line"/>
+  <line x1="870" y1="280" x2="930" y2="280" class="line"/>
+  <text x="36" y="405" class="small">Diff: deny direct egress, inspect protocol not just port, filter DNS, replace FTP, segment AD, detect scan bursts, send all telemetry to SIEM.</text>
+</svg>
