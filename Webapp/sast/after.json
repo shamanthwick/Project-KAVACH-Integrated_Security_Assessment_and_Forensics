@@ -1,0 +1,44 @@
+{
+  "tool": "manual-sast-after-remediation",
+  "status": "not-run",
+  "reason": "Application source code is not present in this repository, so proposed remediation patches could not be applied and rescanned.",
+  "remediation_artifacts_reviewed": [
+    "findings/F-01-sqli/remediation.patch",
+    "findings/F-02-xss/remediation.patch",
+    "findings/F-03-idor/remediation.patch",
+    "findings/F-04-command-injection/remediation.patch",
+    "findings/F-05-file-upload/remediation.patch",
+    "findings/F-06-authentication-failures/remediation.patch",
+    "findings/F-07-vulnerable-components/remediation.patch"
+  ],
+  "expected_after_state": [
+    {
+      "id": "F-01-sqli",
+      "expected_result": "No string-built SQL using request input; parameterized query is used."
+    },
+    {
+      "id": "F-02-xss",
+      "expected_result": "Untrusted output is HTML-encoded and CSP is configured."
+    },
+    {
+      "id": "F-03-idor",
+      "expected_result": "Object lookup includes authenticated user ownership and denies cross-user access."
+    },
+    {
+      "id": "F-04-command-injection",
+      "expected_result": "Shell interpretation is removed and IP input is allowlist-validated."
+    },
+    {
+      "id": "F-05-file-upload",
+      "expected_result": "Uploads are MIME-allowlisted, renamed, and stored outside the web root."
+    },
+    {
+      "id": "F-06-authentication-failures",
+      "expected_result": "Login endpoint has rate limiting, generic errors, logging, and short-lived tokens."
+    },
+    {
+      "id": "F-07-vulnerable-components",
+      "expected_result": "Public version disclosure is removed and dependency scanning blocks high-risk packages."
+    }
+  ]
+}

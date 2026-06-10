@@ -1,0 +1,54 @@
+{
+  "tool": "manual-sast-baseline",
+  "status": "not-run",
+  "reason": "The repository contains Docker environment files, screenshots, and markdown evidence, but not the DVWA or OWASP Juice Shop application source code needed for a real before scan.",
+  "intended_tools": [
+    "Semgrep CE OWASP ruleset",
+    "ESLint security plugin for JavaScript",
+    "Bandit for Python if Python services are added"
+  ],
+  "manual_findings": [
+    {
+      "id": "F-01-sqli",
+      "category": "A03 Injection",
+      "expected_static_pattern": "string-concatenated SQL query using request input",
+      "status": "documented"
+    },
+    {
+      "id": "F-02-xss",
+      "category": "A03 Injection",
+      "expected_static_pattern": "untrusted input rendered without context-aware output encoding",
+      "status": "documented"
+    },
+    {
+      "id": "F-03-idor",
+      "category": "A01 Broken Access Control",
+      "expected_static_pattern": "object lookup by request ID without ownership condition",
+      "status": "documented"
+    },
+    {
+      "id": "F-04-command-injection",
+      "category": "A03 Injection",
+      "expected_static_pattern": "user input passed to shell execution",
+      "status": "documented"
+    },
+    {
+      "id": "F-05-file-upload",
+      "category": "A05 Security Misconfiguration",
+      "expected_static_pattern": "uploaded file stored in web root without MIME allowlist",
+      "status": "documented"
+    },
+    {
+      "id": "F-06-authentication-failures",
+      "category": "A07 Identification and Authentication Failures",
+      "expected_static_pattern": "login endpoint without rate limiting or token lifetime hardening",
+      "status": "documented"
+    },
+    {
+      "id": "F-07-vulnerable-components",
+      "category": "A06 Vulnerable and Outdated Components",
+      "expected_static_pattern": "public version metadata and missing dependency scan gate",
+      "status": "documented"
+    }
+  ]
+}
