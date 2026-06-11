@@ -1,65 +1,55 @@
-# Network Forensics and Architecture
+# Project KAVACH: Integrated Security Assessment & Forensics
 
-Workstream A follows the investigation pipeline:
+## 🛡️ Project Overview
+**Project KAVACH** is a comprehensive cybersecurity investigation that simulates a realistic, multi-stage breach against a fictional financial enterprise, *Meridian FinServe*. 
 
-`Artifacts -> Reasoning -> Recommendation`
+Unlike traditional isolated audits, Project KAVACH integrates **Network Forensics** (Workstream A) and **Web Application Security** (Workstream B) into a unified **Joint Threat Model** (Workstream C). This approach demonstrates the critical link between application vulnerabilities and network-wide compromise.
 
-## Scope
-This project analyzes all PCAPs currently present in this workstream directory:
+---
 
-- `2021-06-15-Hancitor-with-Ficker-Stealer-and-Cobalt-Strike.pcap`
-- `2021-05-26-Trickbot-infection-with-Cobalt-Strike.pcap`
-- `2024-10-23-Redline-Stealer-infection-traffic.pcap`
-- `exfiltration.pcap`
-- `ftp2.pcap`
-- `nmap_null.pcap`
+## 👥 The Team
+| Name | Role | Core Activity |
+| :--- | :--- | :--- |
+| **Shamanth R** | **Network Forensics Lead** | Deep-dive PCAP analysis, C2 beaconing identification, and IOC extraction. |
+| **Saiteja Kacham** | **Web Application Lead** | Penetration testing of DVWA/Juice Shop and SAST analysis. |
+| **Madhurjya Deka** | **Strategic Synthesis Lead** | Threat modeling, attack narrative construction, and executive reporting. |
+| **Ajith Mohan** | **Project Maintainer** | Document finalization, GitHub management, and Quality Assurance. |
 
-The Hancitor capture remains the primary malware-chain source. The other captures are used as supporting analogues to cover the full assignment behavior set: C2, scanning, exfiltration, credential abuse, lateral movement risk, and malware activity.
+---
 
-## Deliverables
-| Workstream Step | File |
-|---|---|
-| A.1 Source PCAP | `Source-selection.md` |
-| A.2 Triage Pass | `triage-notes.md` |
-| A.3 Hypotheses | `hypotheses.md` |
-| A.4 IOC List | `iocs.csv` |
-| A.5 Architecture | `architecture/architecture-notes.md` |
-| Figure 02 Pipeline | `architecture/figure-02-workstream-a-pipeline.mmd` |
-| Before Diagram Source | `architecture/before.mmd` |
-| After Diagram Source | `architecture/after.mmd` |
+## 🔗 The Unified Attack Narrative
+The core of Project KAVACH is the discovery of a **Multi-Stage Attack Chain**:
+1.  **Initial Foothold:** Attacker exploits a **SQL Injection** in the customer portal (Workstream B).
+2.  **Data Discovery:** Using **IDOR**, the attacker enumerates sensitive borrower and merchant records.
+3.  **Exfiltration & C2:** The attacker uses a **Malware Staging** tactic (Workstream A) to establish a Command & Control channel and exfiltrates the stolen data via high-volume outbound POSTs to a direct external IP.
 
-## Analysis Standard
-The report is written as a SOC/DFIR investigation, not a packet-hunting checklist.
+---
 
-Each conclusion should show:
+## 📂 Directory Map
+*   [**1 Network/**](./1%20Network/) - PCAP triage notes, Hancitor/Trickbot forensics, and IOC lists.
+*   [**2 Webapp/**](./2%20Webapp/) - Web findings (SQLi, XSS, Command Injection) and remediation patches.
+*   [**3 Synthesis/**](./3%20Synthesis/) - The master report connecting the dots into a Joint Threat Model.
+*   [**Prompts/**](./Prompts/) - Reconstructed AI instructions used to drive the investigation.
+*   [**Reflections/**](./Reflections/) - Personal technical insights and retrospective learnings from each lead.
 
-- the artifact observed in the PCAP
-- the reasoning that connects it to attacker behavior
-- the confidence level
-- the recommendation or architecture control that follows
+---
 
-## Evidence Summary
-| Capture | Confirmed Behaviors |
-|---|---|
-| Hancitor/Ficker/Cobalt Strike | suspicious DNS, payload downloads, C2 beaconing, suspected stealer POSTs, internal AD interaction |
-| Trickbot/Cobalt Strike | Trickbot-style bot URIs, C2 beaconing, suspicious typo-squatted domain, SMB/LDAP/Kerberos lateral movement risk |
-| RedLine Stealer | direct HTTP POSTs to `188.190.10.10:55123`, high-volume internal-to-external upload, public IP discovery |
-| Exfiltration | DNS-heavy and TLS-heavy browsing/exfiltration analogue, useful for baseline-vs-anomaly reasoning |
-| FTP transfer | plaintext FTP login, exposed password, file upload/download over passive data channels |
-| Nmap NULL scan | 1,030 NULL probes across 1,000 destination ports from one host to another |
+## 🚀 Technical Highlights
 
-## Important Evidence Limits
-Credential theft and exfiltration are strongly suspected in the Hancitor/Ficker capture and suspected in the Trickbot capture. RedLine shows direct upload behavior consistent with stealer exfiltration. FTP plaintext credentials are directly visible in `ftp2.pcap`.
+### Defense-in-Depth Strategy
+We proposed a layered security architecture to break the attack chain:
+*   **Perimeter:** WAF for SQLi prevention and Egress Proxies for C2 blocking.
+*   **Identity:** MFA enforcement to mitigate credential theft observed in PCAPs.
+*   **Segmentation:** Micro-segmentation around Domain Controllers to stop lateral movement.
 
-Use phrasing such as:
+### Reproducibility
+The webapp findings can be reproduced in under 15 minutes using the included Docker environment:
+```bash
+cd "2 Webapp"
+docker compose -f env/docker-compose.yml up -d
+```
 
-- `suspected stealer upload`
-- `credential theft capability`
-- `exfiltration-like POST activity`
+---
 
-Avoid phrasing such as:
-
-- `confirmed stolen credentials`
-- `confirmed exfiltrated files`
-
-unless additional host artifacts or decoded payload contents are added.
+## 🔑 Key Takeaway
+> "Security analysis is not about finding issues—it is about proving them with evidence and connecting them into a coherent story." — *Project KAVACH Retrospective*
