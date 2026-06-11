@@ -1,5 +1,5 @@
 # Prompts used for Network Forensics – Project KAVACH
-**Author: Shamanth**
+**Author: Shamanth R**
 
 These prompts reflect a "Forensics First" mindset, focusing on evidence extraction and architectural reasoning.
 

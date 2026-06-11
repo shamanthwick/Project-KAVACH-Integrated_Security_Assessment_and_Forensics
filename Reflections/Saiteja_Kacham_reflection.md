@@ -1,5 +1,5 @@
 # Reflections: Project KAVACH – Web Application Assessment
-**Author: Shamanth**
+**Author: Saiteja Kacham**
 
 ## The Challenge
 The primary challenge in this workstream was moving beyond "automated scanning" to understand the logic behind the vulnerabilities. While tools like SAST can flag potential issues, manually exploitation of an IDOR or a Command Injection in the lab was much more rewarding. It required a deep understanding of how HTTP requests are structured and how the backend server processes user-provided strings.

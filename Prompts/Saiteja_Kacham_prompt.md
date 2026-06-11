@@ -1,5 +1,5 @@
 # Prompts used for Webapp Assessment – Project KAVACH
-**Author: Shamanth**
+**Author: Saiteja Kacham**
 
 These prompts focus on vulnerability research, payload crafting, and remediation planning.
 
